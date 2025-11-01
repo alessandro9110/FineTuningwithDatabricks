@@ -1,0 +1,8 @@
+# This is a comment, to show how #-prefixed lines are ignored.
+# It is possible to specify requirements as plain names.
+tensorflow
+databricks_genai
+transformers
+tf-keras
+evaluate
+transformers[torch]
