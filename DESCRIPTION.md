@@ -1,1 +1,0 @@
-A practical guide to fine-tuning machine learning models using Databricks notebooks. This repository provides hands-on examples, workflows, and best practices for customizing pre-trained models on Databricks, covering data preparation, training, evaluation, and deployment steps within interactive Jupyter notebooks.
