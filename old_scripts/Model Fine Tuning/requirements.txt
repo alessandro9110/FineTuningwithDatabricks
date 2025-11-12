@@ -1,13 +1,8 @@
 # This is a comment, to show how #-prefixed lines are ignored.
 # It is possible to specify requirements as plain names.
-
-tensorflow==2.16.1
+tensorflow
 databricks_genai
-transformers==4.41.2
-tf_keras==2.16.0
-evaluate==0.4.2
+transformers
+tf-keras
+evaluate
 transformers[torch]
-huggingface-hub==0.27.1
-hf_transfer
-torch==2.2.2
-
