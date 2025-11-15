@@ -5,11 +5,19 @@
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)
 
-This repository shows how to perform fine-tuning of LLM (Large Language Models) on Databricks, using both the HuggingFace Transformers Trainer framework and QLoRA and LoRA techniques for efficient model optimization.
+This repository demonstrates how to fine-tune Large Language Models (LLMs) on Databricks using the HuggingFace Transformers Trainer framework. The project aims to include examples of fine-tuning with QLoRA and LoRA techniques for efficient model optimization.
+
+> **Disclaimer:** The notebooks for fine-tuning with QLoRA and LoRA are not yet developed. This repository currently focuses on the setup, data preparation, and standard fine-tuning workflows.
+
+---
 
 ## Overview
 
-The project guides the user through all phases of fine-tuning a transformer model on Databricks, from environment and data preparation to model training and evaluation. It includes both standard pipelines with Trainer and examples of fine-tuning with QLoRA and LoRA.
+The project guides users through the following phases:
+
+1. Environment setup on Databricks.
+2. Data import and preparation.
+3. Model fine-tuning using the HuggingFace Trainer framework.
 
 ---
 
@@ -17,24 +25,24 @@ The project guides the user through all phases of fine-tuning a transformer mode
 
 ### 1. `00.setup.ipynb` — Initial Setup
 
-- **Create Unity Catalog Schema**: sets up the data space on Databricks to manage datasets and models.
-- **Create UC Volumes**: prepares storage areas for files and temporary data.
+- **Create Unity Catalog Schema**: Sets up the data space on Databricks to manage datasets and models.
+- **Create UC Volumes**: Prepares storage areas for files and temporary data.
 
 > **Note:** File transfer to the Unity Catalog volume must be done manually through the Databricks interface or upload tools, following Databricks policies. Notebooks do not automate this operation.
 
 ### 2. `01.import_data.ipynb` — Data Import and Preparation
 
-- **Load datasets**: imports JSONL files (train, validation, test) from UC volumes.
-- **Prepare data**: combines and transforms datasets, creates labels, and normalizes data.
-- **Save as Delta Table**: exports prepared data in Delta format, optimal for use in Databricks and ML.
+- **Load datasets**: Imports JSONL files (train, validation, test) from UC volumes.
+- **Prepare data**: Combines and transforms datasets, creates labels, and normalizes data.
+- **Save as Delta Table**: Exports prepared data in Delta format, optimal for use in Databricks and ML workflows.
 
 ### 3. `02.fine_tuning_with_trainer.ipynb` — Model Fine-tuning
 
-- **ML Environment Setup**: configures necessary libraries (Transformers, PyTorch, MLflow).
-- **Load data**: imports Delta datasets.
-- **Configure model**: sets the base model (e.g., BERT) and training parameters.
-- **Execute fine-tuning**: trains the model on prepared data, using Trainer, QLoRA, or LoRA.
-- **Evaluate and save**: measures performance and logs the model with MLflow.
+- **ML Environment Setup**: Configures necessary libraries (Transformers, PyTorch, MLflow).
+- **Load data**: Imports Delta datasets.
+- **Configure model**: Sets the base model (e.g., BERT) and training parameters.
+- **Execute fine-tuning**: Trains the model on prepared data using the HuggingFace Trainer framework.
+- **Evaluate and save**: Measures performance and logs the model with MLflow.
 
 ---
 
