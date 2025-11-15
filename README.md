@@ -5,8 +5,8 @@
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)
 
-![Databricks Logo](https://databricks.com/wp-content/uploads/2023/03/databricks-logo.svg)
-![Hugging Face Trainer](https://huggingface.co/front/assets/huggingface_logo-noborder.svg)
+<img src="https://images.seeklogo.com/logo-png/61/2/databricks-icon-logo-png_seeklogo-611588.png" alt="Databricks Logo" width="200" height="200">
+<img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face Trainer" width="200" height="200">
 
 This repository demonstrates how to fine-tune Large Language Models (LLMs) on Databricks using the HuggingFace Transformers Trainer framework. The project aims to include examples of fine-tuning with QLoRA and LoRA techniques for efficient model optimization.
 
