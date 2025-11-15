@@ -5,66 +5,73 @@
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)
 
-Questo repository mostra come eseguire il fine-tuning di modelli LLM (Large Language Models) su Databricks, utilizzando sia il framework Trainer di HuggingFace Transformers che le tecniche QLoRA e LoRA per l'ottimizzazione efficiente dei modelli.
+This repository shows how to perform fine-tuning of LLM (Large Language Models) on Databricks, using both the HuggingFace Transformers Trainer framework and QLoRA and LoRA techniques for efficient model optimization.
 
 ## Overview
 
-Il progetto guida l’utente attraverso tutte le fasi del fine-tuning di un modello transformer su Databricks, dalla preparazione dell’ambiente e dei dati, fino al training e alla valutazione del modello. Sono incluse sia pipeline standard con Trainer che esempi di fine-tuning con QLoRA e LoRA.
+The project guides the user through all phases of fine-tuning a transformer model on Databricks, from environment and data preparation to model training and evaluation. It includes both standard pipelines with Trainer and examples of fine-tuning with QLoRA and LoRA.
 
 ---
 
 ## Step-by-step Notebook Guide
 
-### 1. `00.setup.ipynb` — Setup iniziale
+### 1. `00.setup.ipynb` — Initial Setup
 
-- **Crea lo schema Unity Catalog**: imposta lo spazio dati su Databricks per gestire i dataset e i modelli.
-- **Crea i volumi UC**: prepara le aree di storage per file e dati temporanei.
+- **Create Unity Catalog Schema**: sets up the data space on Databricks to manage datasets and models.
+- **Create UC Volumes**: prepares storage areas for files and temporary data.
 
+> **Note:** File transfer to the Unity Catalog volume must be done manually through the Databricks interface or upload tools, following Databricks policies. Notebooks do not automate this operation.
 
-> **Nota:** Lo spostamento dei file nel volume Unity Catalog deve essere effettuato manualmente tramite l'interfaccia Databricks o strumenti di upload, seguendo le policy di Databricks. I notebook non automatizzano questa operazione.
+### 2. `01.import_data.ipynb` — Data Import and Preparation
 
-### 2. `01.import_data.ipynb` — Importazione e preparazione dati
+- **Load datasets**: imports JSONL files (train, validation, test) from UC volumes.
+- **Prepare data**: combines and transforms datasets, creates labels, and normalizes data.
+- **Save as Delta Table**: exports prepared data in Delta format, optimal for use in Databricks and ML.
 
-- **Carica i dataset**: importa i file JSONL (train, validation, test) dai volumi UC.
-- **Prepara i dati**: combina e trasforma i dataset, crea le etichette e normalizza i dati.
-- **Salva come Delta Table**: esporta i dati preparati in formato Delta, ottimale per l’uso in Databricks e ML.
+### 3. `02.fine_tuning_with_trainer.ipynb` — Model Fine-tuning
 
-### 3. `02.fine_tuning_with_trainer.ipynb` — Fine-tuning del modello
-
-- **Setup ambiente ML**: configura le librerie necessarie (Transformers, PyTorch, MLflow).
-- **Carica i dati**: importa i dataset Delta.
-- **Configura il modello**: imposta il modello base (es. BERT) e i parametri di training.
-- **Esegui il fine-tuning**: addestra il modello sui dati preparati, sia con Trainer che con QLoRA/LoRA.
-- **Valuta e salva**: misura le performance e registra il modello con MLflow.
-
-### 4. `03.test_new_model.ipynb` — Test e valutazione
-
-- **Importa librerie e dati**: carica MLflow, pandas, pyarrow e i dati dal volume UC.
-- **Applica il modello**: usa il modello fine-tunato come UDF Spark per generare predizioni sui dati di test.
-- **Visualizza risultati**: mostra le predizioni e confronta con le etichette reali.
+- **ML Environment Setup**: configures necessary libraries (Transformers, PyTorch, MLflow).
+- **Load data**: imports Delta datasets.
+- **Configure model**: sets the base model (e.g., BERT) and training parameters.
+- **Execute fine-tuning**: trains the model on prepared data, using Trainer, QLoRA, or LoRA.
+- **Evaluate and save**: measures performance and logs the model with MLflow.
 
 ---
 
-## Come usare
+## How to Use
 
-1. Clona questo repository su Databricks o localmente.
-2. Installa le dipendenze indicate in `requirements.txt`.
-3. Segui i notebook in ordine per imparare e riprodurre il workflow di fine-tuning.
+1. Clone this repository on Databricks or locally.
+2. Install dependencies listed in `requirements.txt`.
+3. Follow the notebooks in order to learn and reproduce the fine-tuning workflow.
 
 ---
 
-## Requisiti
+## Requirements
 
-- Account Databricks
+- Databricks Account
 - Python 3.8+
-- HuggingFace Transformers, PyTorch, MLflow, e librerie ML comuni
+- HuggingFace Transformers, PyTorch, MLflow, and common ML libraries
+
+## Cluster Configuration
+
+The fine-tuning notebooks are designed to run on a Databricks cluster with the following configuration:
+
+- **Spark Version**: 15.4.x-cpu-ml-scala2.12
+- **Node Type**: Standard_D16ds_v5 (16 cores, 64 GB memory)
+- **Driver Node Type**: Standard_D16ds_v5
+- **Autotermination**: 60 minutes
+- **Data Security Mode**: SINGLE_USER
+- **Runtime Engine**: STANDARD
+- **Cluster Mode**: Single Node (0 workers)
+
+For optimal performance, ensure the cluster has sufficient resources for model training.
 
 ---
 
-## Note
+## Notes
 
-Questi notebook sono pensati per uso didattico e sperimentale. Adattali alle tue esigenze prima di usarli in produzione.
+These notebooks are intended for educational and experimental use. Adapt them to your needs before using in production.
 
 ---
 
-Per domande o suggerimenti, apri una issue!
+For questions or suggestions, open an issue!
