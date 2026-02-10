@@ -9,3 +9,5 @@ evaluate
 transformers[torch]
 deepspeed>=0.15.4
 hf_transfer
+peft
+bitsandbytes

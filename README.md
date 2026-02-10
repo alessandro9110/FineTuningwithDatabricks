@@ -5,9 +5,7 @@
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 ![Databricks](https://img.shields.io/badge/platform-Databricks-red.svg)
 
-This repository demonstrates how to fine-tune Large Language Models (LLMs) on Databricks using the HuggingFace Transformers Trainer framework. The project aims to include examples of fine-tuning with QLoRA and LoRA techniques for efficient model optimization.
-
-> **Disclaimer:** The notebooks for fine-tuning with QLoRA and LoRA are not yet developed. This repository currently focuses on the setup, data preparation, and standard fine-tuning workflows.
+This repository demonstrates how to fine-tune Large Language Models (LLMs) on Databricks using the HuggingFace Transformers Trainer framework. The project includes examples of standard fine-tuning as well as parameter-efficient fine-tuning with LoRA and QLoRA techniques for efficient model optimization.
 
 ---
 
@@ -18,6 +16,8 @@ The project guides users through the following phases:
 1. Environment setup on Databricks.
 2. Data import and preparation.
 3. Model fine-tuning using the HuggingFace Trainer framework.
+4. Parameter-efficient fine-tuning with LoRA.
+5. Parameter-efficient fine-tuning with QLoRA.
 
 ---
 
@@ -43,6 +43,24 @@ The project guides users through the following phases:
 - **Configure model**: Sets the base model (e.g., BERT) and training parameters.
 - **Execute fine-tuning**: Trains the model on prepared data using the HuggingFace Trainer framework.
 - **Evaluate and save**: Measures performance and logs the model with MLflow.
+
+### 4. `03.fine_tuning_with_lora.ipynb` — LoRA Fine-tuning
+
+- **LoRA Configuration**: Sets up parameter-efficient fine-tuning using LoRA (Low-Rank Adaptation).
+- **Reduced Parameters**: Fine-tunes only a small subset of parameters while freezing the base model.
+- **Memory Efficient**: Requires significantly less memory and computational resources than full fine-tuning.
+- **Load data**: Imports Delta datasets.
+- **Execute training**: Trains LoRA adapters on prepared data.
+- **Evaluate and save**: Merges adapters with base model and logs to MLflow.
+
+### 5. `04.fine_tuning_with_qlora.ipynb` — QLoRA Fine-tuning
+
+- **QLoRA Configuration**: Combines LoRA with 4-bit quantization for maximum efficiency.
+- **4-bit Quantization**: Uses bitsandbytes library to quantize the base model to 4-bit precision.
+- **Ultra Memory Efficient**: Enables fine-tuning of large models on limited GPU resources.
+- **Load data**: Imports Delta datasets.
+- **Execute training**: Trains QLoRA adapters on quantized model.
+- **Evaluate and save**: Merges adapters, dequantizes for inference, and logs to MLflow.
 
 ---
 
